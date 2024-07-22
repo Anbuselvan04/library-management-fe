@@ -9,19 +9,7 @@ const DeleteBookComponent = () => {
 
     const ISBNHandler = (event) => {
         setISBN(event.target.value);
-    };
-
-    const bookNameHandler = (event) => {
-        setBookName(event.target.value);
-    };
-
-    const authorNameHandler = (event) => {
-        setAuthorName(event.target.value);
-    };
-
-    const genreHandler = (event) => {
-        setgenre(event.target.value);
-    };
+    }
 
     const validateHandler = (event) => {
         event.preventDefault()
@@ -41,7 +29,7 @@ const DeleteBookComponent = () => {
         event.preventDefault()
 
         axios
-            .delete(`http://localhost:3500/api/v1/book/delete`, { isbn, bookName, authorName, genre })
+            .delete(`http://localhost:3500/api/v1/book/delete/${isbn}`)
             .then((response) => {
                 alert(`Book Data of ISBN ${response.data.isbn} is deleted successfully`)
                 window.location.href = '/'
@@ -72,7 +60,7 @@ const DeleteBookComponent = () => {
                             type="text"
                             placeholder="Enter the book name..."
                             value={bookName}
-                            onChange={bookNameHandler}
+                            readOnly
                             required
                         />
                     </div>
@@ -82,7 +70,7 @@ const DeleteBookComponent = () => {
                             type="text"
                             placeholder="Enter the author name..."
                             value={authorName}
-                            onChange={authorNameHandler}
+                            readOnly
                             required
                         />
                     </div>
@@ -92,7 +80,7 @@ const DeleteBookComponent = () => {
                             type="text"
                             placeholder="Enter the genre..."
                             value={genre}
-                            onChange={genreHandler}
+                            readOnly
                             required
                         />
                     </div>
